@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/darker_gray"
+    android:orientation="horizontal"
+    android:padding="8dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="12dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtAuthorRP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/txtAuthor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="AuthorRP" />
+
+            <TextView
+                android:id="@+id/txtAuthor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtAuthorRP"
+                tools:text="@string/author" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrierContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                app:barrierDirection="top"
+                app:constraint_referenced_ids="txtContent, imageView,txtCountView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtContent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/txtDate"
+                app:layout_constraintEnd_toStartOf="@+id/imageView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtAuthor"
+                tools:text="@string/post" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toStartOf="@+id/txtCountView"
+                app:layout_constraintStart_toEndOf="@+id/txtContent"
+                app:layout_constraintTop_toBottomOf="@+id/txtAuthor"
+                tools:src="@drawable/ic_view" />
+
+            <TextView
+                android:id="@+id/txtCountView"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:paddingStart="2dp"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toBottomOf="@+id/txtAuthor"
+                tools:text="16" />
+
+            <TextView
+                android:id="@+id/txtDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/barrierLocation"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtContent"
+                tools:text="@string/date" />
+
+            <TextView
+                android:id="@+id/txtShareCount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/imageShare"
+                app:layout_constraintTop_toBottomOf="@+id/barrierLocation"
+                tools:text="3" />
+
+            <ImageView
+                android:id="@+id/imageShare"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/barrierLocation"
+                tools:src="@drawable/ic_refresh" />
+
+            <ImageView
+                android:id="@+id/imageRepost"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toStartOf="@+id/txtCommentCount"
+                app:layout_constraintStart_toEndOf="@id/txtShareCount"
+                app:layout_constraintTop_toBottomOf="@+id/barrierLocation"
+                tools:src="@drawable/ic_repost" />
+
+            <TextView
+                android:id="@+id/txtCommentCount"
+                android:layout_width="14dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/blue"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/imageRepost"
+                app:layout_constraintTop_toBottomOf="@+id/barrierLocation"
+                tools:text="1" />
+
+            <ImageView
+                android:id="@+id/imageLike"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toStartOf="@+id/txtLikeCount"
+                app:layout_constraintTop_toBottomOf="@+id/barrierLocation"
+                tools:src="@drawable/ic_thumb_up" />
+
+            <TextView
+                android:id="@+id/txtLikeCount"
+                android:layout_width="14dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/blue"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintTop_toBottomOf="@+id/barrierLocation"
+                tools:text="8" />
+
+            <ImageView
+                android:id="@+id/imageDislike"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toStartOf="@+id/imageLike"
+                app:layout_constraintTop_toBottomOf="@+id/barrierLocation"
+                tools:src="@drawable/ic_dislike_thumb" />
+
+            <TextView
+                android:id="@+id/txtDislikeCount"
+                android:layout_width="14dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="8dp"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@id/imageDislike"
+                app:layout_constraintTop_toBottomOf="@+id/barrierLocation"
+                tools:text="1" />
+
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrierLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="txtDate" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</FrameLayout>

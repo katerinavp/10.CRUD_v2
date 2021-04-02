@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">mobile_auth</string>
+    <string name="enter_login">enter_login</string>
+    <string name="enter_password">enter_password</string>
+    <string name="login">login</string>
+    <string name="registration">registration</string>
+    <string name="enter_your_post_content">enter your post content</string>
+    <string name="enter_your_repost">enter your repost content</string>
+    <string name="create_new_post">Create new Post</string>
+    <string name="create_repost">Create repost</string>
+    <string name="create">Create</string>
+    <string name="date">22 янв. 2021г.</string>
+    <string name="author">Author</string>
+    <string name="post">Post</string>
+    <string name="location">Location</string>
+    <string name="enter_name">enter_name</string>
+    <string name="repeate_password">repeate_password</string>
+    <string name="save">Save</string>
+    <string name="enter_login_password">"Введите логин и пароль"</string>
+    <string name="post_screen">Экран постов</string>
+    <string name="check_password_length"> Минимальная длина пароля - 6 символов, строка должна содержать хотя бы одну цифру, одну заглавную и строчную букву</string>
+    <string name="password_incorrect"> Пароли не совпадают</string>
+    <string name="success_reg"> Успешная регистрация</string>
+    <string name="unsuccess_reg"> Неуспешная регистрация</string>
+    <string name="success_auth"> Успешная аутентификация</string>
+    <string name="Unsuccess_auth"> Неуспешная аутентификация</string>
+    <string name="turn_on_internet"> Подключите интернет</string>
+    <string name="enter_post">Заполните пост</string>
+    <string name="post_created_successfull">Пост создан успешно</string>
+    <string name="post_error">Ошибка создания поста</string>
+    <string name="load_more_posts">Загрузить еще</string>
+    <string name="load_new_posts">Загрузить новые</string>
+    <string name="error">Ошибка</string>
+</resources>
