@@ -32,6 +32,10 @@ class AuthActivity :
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         if (isAuthenticated()) {
+            val token = getSharedPreferences(API_SHARED_FILE, Context.MODE_PRIVATE).getString(
+                AUTHENTICATED_SHARED_KEY, ""
+            )
+            Repository.createRetrofitWithAuth(token!!)
             goFeedActivity()
         }
 
@@ -60,7 +64,7 @@ class AuthActivity :
                         if (token.isSuccessful) {
                             authenticated = true
 
-                            setUserAuth(requireNotNull(token.body()).token) // 200 код
+                            setUserAuth(requireNotNull(token.body()).token)
 
                             toast(R.string.success_auth)
                             goFeedActivity()
@@ -69,7 +73,7 @@ class AuthActivity :
                             toast(R.string.Unsuccess_auth)
                         }
                     } catch (e: Exception) {
-                        toast(R.string.turn_on_internet)
+                        toast(R.string.error_server)
 
                     }
                 }

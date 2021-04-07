@@ -24,7 +24,7 @@
     <string name="unsuccess_reg"> Неуспешная регистрация</string>
     <string name="success_auth"> Успешная аутентификация</string>
     <string name="Unsuccess_auth"> Неуспешная аутентификация</string>
-    <string name="turn_on_internet"> Подключите интернет</string>
+    <string name="error_server"> Ошибка соединения с сервером</string>
     <string name="enter_post">Заполните пост</string>
     <string name="post_created_successfull">Пост создан успешно</string>
     <string name="post_error">Ошибка создания поста</string>

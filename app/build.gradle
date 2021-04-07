@@ -67,4 +67,5 @@ dependencies {
     //Toast
     implementation("com.louiscad.splitties:splitties-toast:$splitties_version")
 
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
 }

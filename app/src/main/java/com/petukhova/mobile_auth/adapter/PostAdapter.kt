@@ -23,6 +23,9 @@ class PostAdapter(val list: MutableList<PostModel>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val ITEM_TYPE_POST = 1
     private val ITEM_TYPE_REPOST = 2
+    private val ITEM_FOOTER = 3 //кнопка "загрузить еще"
+    private val ITEM_HEADER = 4 //кнопка "загрузить новые"
+
     var likeBtnClickListener: OnLikeBtnClickListener? = null
     var repostsBtnClickListener: OnRepostsBtnClickListener? = null
     var loadMoreBtnClickListener: OnLoadMoreBtnClickListener? = null
@@ -30,12 +33,17 @@ class PostAdapter(val list: MutableList<PostModel>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
         return if (viewType == ITEM_TYPE_POST) {
-            val postView =
-                LayoutInflater.from(parent.context).inflate(R.layout.item_post, parent, false)
+            val postView = LayoutInflater.from(parent.context).inflate(R.layout.item_post, parent, false)
             PostViewHolder(this, postView)
-        } else {
-            val repostView =
-                LayoutInflater.from(parent.context).inflate(R.layout.item_repost, parent, false)
+        } else if(viewType == ITEM_FOOTER) {
+            val postView =
+                LayoutInflater.from(parent.context).inflate(R.layout.item_load_more, parent, false)
+            PostViewHolder(this, postView)
+        } else if(viewType == ITEM_HEADER) {
+            val postView = LayoutInflater.from(parent.context).inflate(R.layout.item_load_new, parent, false)
+            PostViewHolder(this, postView)
+        }else{
+            val repostView = LayoutInflater.from(parent.context).inflate(R.layout.item_repost, parent, false)
             RepostViewHolder(this, repostView)
         }
     }
@@ -50,9 +58,12 @@ class PostAdapter(val list: MutableList<PostModel>) :
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (list[position].source == null) {
-            ITEM_TYPE_POST
-        } else ITEM_TYPE_REPOST
+
+        return when {
+            position == 0 -> ITEM_FOOTER
+            list[position].source == null ->ITEM_TYPE_POST
+         else -> ITEM_TYPE_REPOST
+    }
     }
 
     interface OnLikeBtnClickListener {
