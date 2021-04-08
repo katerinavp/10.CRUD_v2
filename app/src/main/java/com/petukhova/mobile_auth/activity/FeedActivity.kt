@@ -1,8 +1,6 @@
 package com.petukhova.mobile_auth.activity
 
-import android.app.ProgressDialog
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
@@ -26,31 +24,40 @@ class FeedActivity : AppCompatActivity(), PostAdapter.OnLikeBtnClickListener {
         btnAddNewPost.setOnClickListener { (start<CreateNewPostActivity>()) }
     }
 
+   //onStart вызывается когда мы создали пос - открывается весь список постов - onRestart -> onStart
     override fun onStart() {
-        super.onStart()
-        progressBar.isVisible = true
-        lifecycleScope.launch {
-                val result = Repository.getPosts()
+       super.onStart()
+       progressBar.isVisible = true
+       lifecycleScope.launch {
 
-                if (result.isSuccessful) {
-                    progressBar.isInvisible = true
-                    with(container) {
-                        layoutManager = LinearLayoutManager(this@FeedActivity)
-                        adapter = PostAdapter(
-                            (result.body() ?: emptyList()) as MutableList<PostModel>
-                        ).apply {
-                            likeBtnClickListener = this@FeedActivity
-                        }
-                    }
-                }
+               val result = Repository.getPosts()
 
-             else {
+               if (result.isSuccessful) {
+                   progressBar.isInvisible = true
+                   // Создаем адаптер со списком
+                   with(container) {
+                       layoutManager = LinearLayoutManager(this@FeedActivity)
+                       adapter = PostAdapter(
+                           (result.body() ?: emptyList()) as MutableList<PostModel>
+                       ).apply {
+                           likeBtnClickListener = this@FeedActivity
+                       }
+                   }
+               }
+//            }catch (e:Exception){
+//               Log.i("ОшибкаFeed", "$e")
+//                toast(getString(R.string.error))
+//
 
-                toast(getString(R.string.error))
-            }
+               else {
+                   toast(getString(R.string.error))
+               }
 
-        }
-    }
+
+
+
+       }
+   }
 
         override fun onLikeBtnClicked(item: PostModel, position: Int) {
 

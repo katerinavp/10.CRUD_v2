@@ -2,6 +2,7 @@ package com.petukhova.mobile_auth.activity
 
 import android.app.ProgressDialog
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.petukhova.mobile_auth.R
@@ -38,11 +39,14 @@ class CreateNewPostActivity : AppCompatActivity() {
                         // обрабатываем успешное создание поста
                         handleSuccessfullResult()
 
-                    } else {
-                        // обрабатываем ошибку
+                    }
+                    else {
+                     //   обрабатываем ошибку
+
                         handleFailedResult()
                     }
                 } catch (e: IOException) {
+                    Log.i("ошибка catch", "$e")
                     // обрабатываем ошибку
                     handleFailedResult()
                 } finally {
@@ -61,8 +65,8 @@ class CreateNewPostActivity : AppCompatActivity() {
     }
 
     private fun handleFailedResult() {
+        //Log.i("ошибка catch", "$e")
         toast(getString(R.string.post_error))
     }
-
 
 }

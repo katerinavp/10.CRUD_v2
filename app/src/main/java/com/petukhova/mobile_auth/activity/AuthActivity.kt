@@ -35,6 +35,7 @@ class AuthActivity :
             val token = getSharedPreferences(API_SHARED_FILE, Context.MODE_PRIVATE).getString(
                 AUTHENTICATED_SHARED_KEY, ""
             )
+            // Пересоздаем retrofit-клиент с токеном аутентификации
             Repository.createRetrofitWithAuth(token!!)
             goFeedActivity()
         }
@@ -42,6 +43,18 @@ class AuthActivity :
         binding.btnLog.setOnClickListener { auth() }
         binding.btnReg.setOnClickListener { goRegActivity() }
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if (isAuthenticated()) {
+            val token = getSharedPreferences(API_SHARED_FILE, Context.MODE_PRIVATE).getString(
+                AUTHENTICATED_SHARED_KEY, ""
+            )
+            Repository.createRetrofitWithAuth(token!!)
+            start<FeedActivity>()
+            finish()
+        }
     }
 
     private fun auth() {
@@ -65,7 +78,7 @@ class AuthActivity :
                             authenticated = true
 
                             setUserAuth(requireNotNull(token.body()).token)
-
+                            Repository.createRetrofitWithAuth(token.body()!!.token)
                             toast(R.string.success_auth)
                             goFeedActivity()
 

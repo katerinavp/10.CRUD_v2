@@ -25,12 +25,16 @@ object Repository {
             .addConverterFactory(GsonConverterFactory.create()) //конвертация объектовв json
             .build()
 
+    // Добавление interceptor'ов в retrofit клиент
+    // Во все последующие запросы будет добавляться токен
+    // и они будут логироваться
     fun createRetrofitWithAuth(authToken: String) {
         val httpLoggerInterceptor = HttpLoggingInterceptor()
-        // Указываем, что хотим логировать тело запроса.
+    // Указываем, что хотим логировать тело запроса
         httpLoggerInterceptor.level = HttpLoggingInterceptor.Level.BODY
         val client = OkHttpClient.Builder()
-            .addInterceptor(InjectAuthTokenInterceptor({ authToken }))
+    // Добавляем два интерсептора: для инжекта токена и логирования.
+            .addInterceptor(InjectAuthTokenInterceptor(authToken))
             .addInterceptor(httpLoggerInterceptor)
             .build()
         retrofit = Retrofit.Builder()
@@ -38,9 +42,10 @@ object Repository {
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        //создаем API на основе нового retrofit-клиента
-        api = retrofit.create(API::class.java)
-
+    //создаем API на основе нового retrofit-клиента
+        api = retrofit.create(
+            API::class.java
+        )
     }
 
     //Ленивое создание API
@@ -56,10 +61,10 @@ object Repository {
     suspend fun registration(login: String, password: String) =
         api.registration(AuthRequestParams(login, password))
 
-    suspend fun createPost(content: String): Response<Void> = api.createPost(
+    suspend fun createPost(content: String) = api.createPost(
         CreatePostRequest(content = content)
     )
 
-    suspend fun getPosts(): Response<List<PostModel>> = api.getPosts()
+    suspend fun getPosts() = api.getPosts()
 //    Log.i("getPosts", "$")
 }
